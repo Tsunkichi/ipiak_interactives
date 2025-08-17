@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identifica la Vocal Intrusa</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #d4a574 0%, #c89660 100%);
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .game-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .instructions {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px 25px;
+            border-radius: 8px;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        .instructions h2 {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 20px;
+        }
+
+        .instructions p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .vowel {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            background: #f4f4f4;
+            color: #333;
+            border: 2px solid #ddd;
+        }
+
+        .vowel:hover {
+            transform: scale(1.1);
+        }
+
+        .vowel.shuar {
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        .vowel.intruder {
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        .result-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            z-index: 2000;
+            display: none;
+        }
+
+        .result-message h3 {
+            margin: 0 0 15px 0;
+            font-size: 24px;
+        }
+
+        .result-message.correct h3 {
+            color: #d4a574;
+        }
+
+        .result-message.incorrect h3 {
+            color: #b8956d;
+        }
+
+        .restart-btn {
+            background: #d4a574;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .restart-btn:hover {
+            background: #c89660;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -20px) rotate(90deg); }
+            50% { transform: translate(-10px, -30px) rotate(180deg); }
+            75% { transform: translate(-30px, 10px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="instructions">
+            <h2>Identifica la Vocal Intrusa</h2>
+            <p>El idioma Shuar tiene 4 vocales: A, E, I, U<br>¡Encuentra cuál NO pertenece!</p>
+        </div>
+
+        <div class="result-message" id="resultMessage">
+            <h3 id="resultTitle"></h3>
+            <p id="resultText"></p>
+            <button class="restart-btn" onclick="restartGame()">Jugar de Nuevo</button>
+        </div>
+    </div>
+
+    <script>
+        const vowels = ['A', 'E', 'I', 'U', 'O']; // O es la intrusa
+        const shuarVowels = ['A', 'E', 'I', 'U'];
+        let gameActive = true;
+
+        function getRandomPosition() {
+            const margin = 100;
+            return {
+                x: Math.random() * (window.innerWidth - 2 * margin) + margin,
+                y: Math.random() * (window.innerHeight - 2 * margin) + margin
+            };
+        }
+
+        function getRandomAnimation() {
+            const duration = Math.random() * 3 + 2; // 2-5 segundos
+            const delay = Math.random() * 2; // 0-2 segundos delay
+            return {
+                duration: duration,
+                delay: delay
+            };
+        }
+
+        function createVowel(letter) {
+            const vowel = document.createElement('div');
+            vowel.className = 'vowel';
+            vowel.textContent = letter;
+            vowel.setAttribute('data-vowel', letter);
+            
+            if (shuarVowels.includes(letter)) {
+                vowel.classList.add('shuar');
+            } else {
+                vowel.classList.add('intruder');
+            }
+            
+            const pos = getRandomPosition();
+            vowel.style.left = pos.x + 'px';
+            vowel.style.top = pos.y + 'px';
+            
+            const animation = getRandomAnimation();
+            vowel.style.animation = `float ${animation.duration}s ease-in-out ${animation.delay}s infinite alternate`;
+            
+            vowel.addEventListener('click', handleVowelClick);
+            
+            return vowel;
+        }
+
+        function handleVowelClick(event) {
+            if (!gameActive) return;
+            
+            const clickedVowel = event.target.getAttribute('data-vowel');
+            const resultMessage = document.getElementById('resultMessage');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultText = document.getElementById('resultText');
+            
+            gameActive = false;
+            
+            if (clickedVowel === 'O') {
+                resultMessage.className = 'result-message correct';
+                resultTitle.textContent = '¡Correcto! 🎉';
+                resultText.textContent = 'La "O" no pertenece al idioma Shuar. Las vocales Shuar son: A, E, I, U';
+            } else {
+                resultMessage.className = 'result-message incorrect';
+                resultTitle.textContent = '¡Inténtalo de nuevo! ❌';
+                resultText.textContent = `La "${clickedVowel}" SÍ pertenece al Shuar. Busca la "O" que es la intrusa.`;
+            }
+            
+            resultMessage.style.display = 'block';
+        }
+
+        function initGame() {
+            const container = document.querySelector('.game-container');
+            
+            // Limpiar vocales existentes
+            const existingVowels = container.querySelectorAll('.vowel');
+            existingVowels.forEach(vowel => vowel.remove());
+            
+            // Crear nuevas vocales
+            vowels.forEach(letter => {
+                const vowel = createVowel(letter);
+                container.appendChild(vowel);
+            });
+            
+            gameActive = true;
+            document.getElementById('resultMessage').style.display = 'none';
+        }
+
+        function restartGame() {
+            initGame();
+        }
+
+        // Inicializar juego
+        initGame();
+
+        // Reposicionar al cambiar tamaño de ventana
+        window.addEventListener('resize', () => {
+            if (gameActive) {
+                initGame();
+            }
+        });
+    </script>
+</body>
+</html>
