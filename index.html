@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ipiak Interactives</title>
+  <meta name="description" content="Minijuegos interactivos para aprender el idioma Shuar. Desarrollado por IPIAK - The God of Water & Tsunki Labs." />
+
+  <!-- Google Fonts: Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #1e40af;
+      --secondary: #0d9488;
+      --bg-light: #f9fafb;
+      --text-dark: #1f2937;
+      --text-muted: #6b7280;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.6;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 0;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .logo {
+      width: 120px;
+      height: 120px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      color: white;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .content {
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    .game-container {
+      margin: 2rem 0;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .game-container iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+
+    .info {
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer {
+      margin-top: 3rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .game-container {
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">I</div>
+    <h1>Ipiak Interactives</h1>
+    <p class="subtitle">Minijuegos interactivos para aprender el idioma Shuar</p>
+  </header>
+
+  <main class="content">
+    <div class="game-container">
+      <iframe src="shuar_vowels_game.html" title="Juego de vocales shuar"></iframe>
+    </div>
+
+    <p class="info">
+      Este espacio contiene actividades digitales desarrolladas por <strong>IPIAK</strong>, una iniciativa de 
+      <strong>The God of Water</strong> y <strong>Tsunki Labs</strong>.  
+      Los juegos están diseñados para apoyar el aprendizaje del idioma shuar de forma accesible y culturalmente pertinente.
+    </p>
+
+    <p class="info">
+      <a href="shuar_vowels_game.html" style="color: var(--primary); text-decoration: underline;">Abrir juego directamente</a>
+    </p>
+  </main>
+
+  <footer class="footer">
+    © 2025 IPIAK - The God of Water & Tsunki Labs | <a href="https://github.com/tsunkichi/ipiak_interactives" style="color: var(--primary);">Ver código fuente</a>
+  </footer>
+
+</body>
+</html>
