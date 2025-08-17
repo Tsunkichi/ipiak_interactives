@@ -1,5 +1,6 @@
-# ipiak_interactives
 # Ipiak Interactives 🌿
+# The God Of Water - Tsnk Labs
+TECH FOR INDIGENOUS FUTURES
 
 > Minijuegos y ejercicios interactivos para el aprendizaje del idioma **Shuar**  
 > Recursos digitales de **Ipiak - Shuar Language**
