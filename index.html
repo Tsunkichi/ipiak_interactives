@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ipiak Interactives</title>
-  <meta name="description" content="Minijuegos interactivos para aprender el idioma Shuar. Desarrollado por IPIAK - The God of Water & Tsunki Labs." />
+  <meta name="description" content="Minijuegos interactivos para aprender el idioma Shuar. Iniciativa de The God of Water y Tsunki Labs." />
 
   <!-- Google Fonts: Inter -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -16,6 +16,8 @@
       --bg-light: #f9fafb;
       --text-dark: #1f2937;
       --text-muted: #6b7280;
+      --border: #e5e7eb;
+      --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     * {
@@ -30,76 +32,106 @@
       color: var(--text-dark);
       line-height: 1.6;
       padding: 2rem;
-      max-width: 1200px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
     header {
       text-align: center;
-      padding: 2rem 0;
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    .logo {
-      width: 120px;
-      height: 120px;
-      background-color: var(--primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-      color: white;
-      font-size: 2rem;
-      font-weight: 700;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
     }
 
     h1 {
       font-size: 2.5rem;
       font-weight: 700;
-      margin-bottom: 0.5rem;
       color: var(--primary);
+      margin-bottom: 0.5rem;
     }
 
     .subtitle {
       font-size: 1.1rem;
       color: var(--text-muted);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
-    .content {
-      padding: 2rem 0;
-      text-align: center;
-    }
-
-    .game-container {
-      margin: 2rem 0;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    }
-
-    .game-container iframe {
-      width: 100%;
-      height: 500px;
-      border: none;
-    }
-
-    .info {
-      margin-top: 2rem;
+    .tagline {
       font-size: 0.95rem;
-      color: var(--text-muted);
-      max-width: 600px;
+      color: var(--secondary);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    main {
+      padding: 2.5rem 0;
+    }
+
+    .intro {
+      margin-bottom: 2.5rem;
+      text-align: center;
+      max-width: 700px;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .footer {
+    .intro p {
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+
+    .games-list {
+      list-style: none;
+    }
+
+    .games-list li {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .games-list li:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .games-list a {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--primary);
+      text-decoration: none;
+      display: block;
+    }
+
+    .games-list a:hover {
+      text-decoration: underline;
+    }
+
+    .games-list p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+    }
+
+    footer {
       margin-top: 3rem;
       text-align: center;
       color: var(--text-muted);
       font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+      padding-top: 1.5rem;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 600px) {
@@ -107,10 +139,10 @@
         padding: 1rem;
       }
       h1 {
-        font-size: 2rem;
+        font-size: 2.1rem;
       }
-      .game-container {
-        height: 400px;
+      .intro {
+        font-size: 0.95rem;
       }
     }
   </style>
@@ -118,29 +150,48 @@
 <body>
 
   <header>
-    <div class="logo">I</div>
     <h1>Ipiak Interactives</h1>
-    <p class="subtitle">Minijuegos interactivos para aprender el idioma Shuar</p>
+    <p class="subtitle">Minijuegos y ejercicios interactivos para aprender el idioma Shuar</p>
+    <p class="tagline">The God Of Water - Tech for indigenous futures.</p>
   </header>
 
-  <main class="content">
-    <div class="game-container">
-      <iframe src="shuar_vowels_game.html" title="Juego de vocales shuar"></iframe>
+  <main>
+    <div class="intro">
+      <p>
+        Este repositorio contiene una colección de minijuegos y actividades digitales diseñadas para apoyar el aprendizaje del idioma <strong>Shuar</strong>, una lengua indígena hablada en la Amazonía ecuatoriana.
+      </p>
+      <p>
+        Los contenidos son parte de <strong>Ipiak - Shuar Language</strong>, una iniciativa que busca preservar y revitalizar el idioma shuar mediante herramientas tecnológicas accesibles, pedagógicamente efectivas y culturalmente significativas.
+      </p>
+      <p>
+        Estos archivos se utilizan no solo aquí, sino también en otras plataformas educativas de IPIAK, como aplicaciones, sitios web y materiales para escuelas bilingües.
+      </p>
     </div>
 
-    <p class="info">
-      Este espacio contiene actividades digitales desarrolladas por <strong>IPIAK</strong>, una iniciativa de 
-      <strong>The God of Water</strong> y <strong>Tsunki Labs</strong>.  
-      Los juegos están diseñados para apoyar el aprendizaje del idioma shuar de forma accesible y culturalmente pertinente.
-    </p>
-
-    <p class="info">
-      <a href="shuar_vowels_game.html" style="color: var(--primary); text-decoration: underline;">Abrir juego directamente</a>
-    </p>
+    <h2 style="margin-bottom: 1.5rem; color: var(--primary);">Juegos disponibles</h2>
+    <ul class="games-list">
+      <!-- Agrega más juegos aquí cuando los tengas -->
+      <li>
+        <a href="shuar_vowels_game.html">Juego de Vocales Shuar</a>
+        <p>Practica la identificación y pronunciación de las vocales shuar con audio y retroalimentación visual.</p>
+      </li>
+      <!-- Ejemplo de cómo agregar más:
+      <li>
+        <a href="shuar_words_match.html">Emparejar palabras shuar</a>
+        <p>Relaciona imágenes con sus nombres en shuar.</p>
+      </li>
+      -->
+    </ul>
   </main>
 
-  <footer class="footer">
-    © 2025 IPIAK - The God of Water & Tsunki Labs | <a href="https://github.com/tsunkichi/ipiak_interactives" style="color: var(--primary);">Ver código fuente</a>
+  <footer>
+    <p>
+      © 2025 IPIAK - Una iniciativa de <strong>The God of Water</strong> y <strong>Tsunki Labs</strong>.<br>
+      Hecho con compromiso cultural y tecnológico para el futuro de los pueblos originarios.
+    </p>
+    <p>
+      <a href="https://github.com/tsunkichi/ipiak_interactives" target="_blank">Ver código en GitHub</a>
+    </p>
   </footer>
 
 </body>
